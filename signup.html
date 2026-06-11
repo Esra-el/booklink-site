@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up — BookLink</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo-area">
+      <span class="logo-dot"></span>
+      <a class="site-name" href="index.html" style="text-decoration:none;color:inherit;">BookLink</a>
+    </div>
+  </header>
+
+  <!-- FORM PAGE: centered on screen -->
+  <div class="form-page">
+    <div class="form-box">
+
+      <h2>Create your account</h2>
+      <p class="subtitle">Start accepting bookings in minutes.</p>
+
+      <!-- Each form-group = one field (label + input) -->
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" placeholder="Sara Johnson">
+        <!-- type="text" = normal text input -->
+      </div>
+
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="sara@email.com">
+        <!-- type="email" = validates it's a real email format -->
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" placeholder="Min. 8 characters">
+        <!-- type="password" = hides the text as dots -->
+      </div>
+
+      <div class="form-group">
+        <label>Your BookLink username</label>
+        <input type="text" placeholder="sara">
+        <!-- This becomes their link: booklink.com/sara -->
+        <small style="color:#6b7280; font-size:0.8rem;">Your link will be: booklink.com/<strong>sara</strong></small>
+      </div>
+
+      <!-- Submit button — type="button" for now, later we connect to backend -->
+      <button class="btn-full" type="button" onclick="window.location.href='check-inbox.html'">
+        Create Account
+      </button>
+      <!-- onclick = when clicked, go to check-inbox page -->
+
+      <p class="form-footer">
+        Already have an account? <a href="login.html">Log in</a>
+      </p>
+
+    </div>
+  </div>
+
+</body>
+</html>

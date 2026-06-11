@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookLink - One link. Infinite bookings.</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="header">
+    <div class="logo-area">
+      <svg class="logo-svg" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect width="32" height="32" rx="8" fill="#0a0a0a"/>
+        <!-- left link -->
+        <rect x="6" y="10" width="10" height="17" rx="5" fill="none" stroke="white" stroke-width="2.8"/>
+        <!-- right link overlapping -->
+        <rect x="16" y="5" width="10" height="17" rx="5" fill="none" stroke="white" stroke-width="2.8"/>
+        <!-- interlock mask -->
+        <rect x="16" y="6" width="4" height="15" fill="#0a0a0a"/>
+        <!-- redraw left link front -->
+        <rect x="6" y="10" width="10" height="17" rx="5" fill="none" stroke="white" stroke-width="2.8"/>
+      </svg>
+      <span class="site-name">BookLink</span>
+    </div>
+    <nav class="nav-links">
+      <a href="login.html" class="nav-link">Log in</a>
+      <a href="signup.html" class="nav-cta">Get started</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Free for everyone</p>
+      <h1>One link.<br>Infinite bookings.</h1>
+      <p class="hero-sub">Create your page, share your link, and let anyone book you instantly. No back and forth.</p>
+      <div class="hero-actions">
+        <a href="signup.html" class="btn-primary">Get started free</a>
+        <a href="#demo" class="btn-ghost">See how it works</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <p class="carousel-eyebrow">For anyone who takes appointments</p>
+      <div class="carousel-wrap">
+        <button class="carr-arrow" onclick="move(-1)" aria-label="Previous">&#8249;</button>
+        <div class="carr-outer">
+          <div class="carr-phones" id="carrPhones"></div>
+          <div class="carr-dots" id="carrDots"></div>
+        </div>
+        <button class="carr-arrow" onclick="move(1)" aria-label="Next">&#8250;</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEMO -->
+  <section class="demo-section" id="demo">
+    <div class="demo-header">
+      <h2>See it in action</h2>
+      <p>Tap the calendar, pick a slot, book a session. Watch both sides update live.</p>
+    </div>
+    <div class="demo-controls">
+      <span class="switch-label">Dark mode</span>
+      <label class="switch" aria-label="Toggle dark mode">
+        <input type="checkbox" id="darkToggle" onchange="toggleMode(this.checked)">
+        <span class="switch-track"><span class="switch-thumb"></span></span>
+      </label>
+    </div>
+    <div class="ipads-row">
+      <div class="ipad-col">
+        <span class="ipad-label">Teacher</span>
+        <div class="ipad-frame">
+          <div class="sb-r"></div><div class="sb-l1"></div><div class="sb-l2"></div>
+          <div class="ipad-screen"><div class="scr light" id="T"></div></div>
+        </div>
+      </div>
+      <div class="ipad-col">
+        <span class="ipad-label">Student</span>
+        <div class="ipad-frame">
+          <div class="sb-r"></div><div class="sb-l1"></div><div class="sb-l2"></div>
+          <div class="ipad-screen"><div class="scr light" id="S"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AI SECTION -->
+  <section class="ai-section">
+    <div class="ai-inner">
+      <div class="ai-left">
+        <p class="ai-eyebrow">AI-powered</p>
+        <h2>Your scheduling assistant</h2>
+        <p class="ai-sub">Stop managing your calendar manually. Just tell it what you need.</p>
+        <ul class="ai-commands">
+          <li><span class="cmd">"Add slot Monday 10am for Math"</span></li>
+          <li><span class="cmd">"Remove Tuesday at 2pm"</span></li>
+          <li><span class="cmd">"What slots do I have this week?"</span></li>
+          <li><span class="cmd">"Clear all Friday slots"</span></li>
+        </ul>
+      </div>
+      <div class="ai-right">
+        <div class="ai-chat">
+          <div class="ai-chat-top">
+            <span class="ai-live-dot"></span>
+            <span class="ai-chat-title">BookLink AI</span>
+          </div>
+          <div class="ai-msgs" id="aiMessages">
+            <div class="ai-msg agent">Hi Sara. I manage your slots. Try: "Add slot Monday 10am Math" or "Remove Tuesday 14:00"</div>
+          </div>
+          <div class="ai-input-row">
+            <input type="text" id="aiIn" placeholder="Type a command..." onkeydown="if(event.key==='Enter')sendAI()">
+            <button id="aiSendBtn" onclick="sendAI()">Send</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="logo-area">
+        <svg class="logo-svg" width="28" height="28" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="32" height="32" rx="8" fill="#0a0a0a"/>
+          <rect x="6" y="10" width="10" height="17" rx="5" fill="none" stroke="white" stroke-width="2.8"/>
+          <rect x="16" y="5" width="10" height="17" rx="5" fill="none" stroke="white" stroke-width="2.8"/>
+          <rect x="16" y="6" width="4" height="15" fill="#0a0a0a"/>
+          <rect x="6" y="10" width="10" height="17" rx="5" fill="none" stroke="white" stroke-width="2.8"/>
+        </svg>
+        <span class="site-name">BookLink</span>
+      </div>
+      <p class="footer-copy">2026 BookLink. Built for everyone.</p>
+    </div>
+  </footer>
+
+</body>
+
+<script>
+// ─── CAROUSEL ────────────────────────────────────────────────────────────────
+const PROFILES=[
+  {name:'Sara Johnson',role:'Math Tutor',color:'#1e3a5f',initials:'SJ',slots:[{t:'Mon 10:00',s:'Algebra',o:true},{t:'Tue 14:00',s:'Calculus',o:false},{t:'Wed 09:00',s:'Physics',o:true}]},
+  {name:'Marco Ferri',role:'Personal Trainer',color:'#3b1f0a',initials:'MF',slots:[{t:'Mon 07:00',s:'Strength',o:true},{t:'Mon 08:00',s:'Cardio',o:false},{t:'Thu 07:00',s:'HIIT',o:true}]},
+  {name:'Amira Hassan',role:'Therapist',color:'#1a3d2b',initials:'AH',slots:[{t:'Tue 11:00',s:'Consultation',o:false},{t:'Wed 15:00',s:'Session',o:true},{t:'Fri 10:00',s:'Session',o:true}]},
+  {name:'Luca Bianchi',role:'Hair Stylist',color:'#2d1a4a',initials:'LB',slots:[{t:'Mon 12:00',s:'Haircut',o:true},{t:'Tue 13:00',s:'Color',o:true},{t:'Thu 11:00',s:'Haircut',o:false}]},
+  {name:'Nina Reeves',role:'Life Coach',color:'#3d1f1f',initials:'NR',slots:[{t:'Mon 09:00',s:'1-on-1',o:true},{t:'Wed 10:00',s:'Group',o:false},{t:'Fri 09:00',s:'1-on-1',o:true}]},
+];
+let carCur=0;
+
+function buildPhone(p){
+  const sl=p.slots.map(s=>`<div style="box-sizing:border-box;width:100%;background:${s.o?'#fff':'#fafafa'};border:1px solid ${s.o?'#e5e5e5':'#efefef'};border-radius:9px;padding:8px 10px;display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;"><div style="min-width:0;flex:1;margin-right:6px;"><div style="font-weight:600;font-size:11px;color:${s.o?'#0a0a0a':'#a3a3a3'};letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${s.t}</div><div style="font-size:10px;color:#737373;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${s.s}</div></div><span style="font-size:9px;padding:2px 7px;border-radius:20px;font-weight:600;white-space:nowrap;flex-shrink:0;background:${s.o?'#dcfce7':'#fee2e2'};color:${s.o?'#166534':'#991b1b'}">${s.o?'Open':'Full'}</span></div>`).join('');
+  return `<div style="box-sizing:border-box;width:100%;height:100%;display:flex;flex-direction:column;background:#f5f5f5;overflow:hidden;font-family:'Geist',system-ui,sans-serif;"><div style="box-sizing:border-box;width:100%;background:#fff;padding:9px 12px 7px;border-bottom:1px solid #e5e5e5;font-size:12px;font-weight:600;letter-spacing:-.01em;flex-shrink:0">Book a session</div><div style="box-sizing:border-box;width:100%;padding:10px 12px;display:flex;flex-direction:column;overflow:hidden;"><div style="box-sizing:border-box;width:100%;background:#fff;border:1px solid #e5e5e5;border-radius:11px;padding:10px;display:flex;align-items:center;gap:8px;margin-bottom:9px;flex-shrink:0;"><div style="width:36px;height:36px;border-radius:50%;background:${p.color};color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0;letter-spacing:-.02em">${p.initials}</div><div style="min-width:0;flex:1;overflow:hidden;"><div style="font-weight:400;font-size:11px;letter-spacing:-.01em;color:#525252;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p.name}</div><div style="font-size:12px;font-weight:700;color:#0a0a0a;letter-spacing:-.02em;margin-top:1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">${p.role}</div><div style="font-size:8px;color:#a3a3a3;margin-top:3px;font-weight:500;letter-spacing:.01em;font-family:'Geist Mono',monospace;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">booklink.com/${p.initials.toLowerCase()}</div></div></div><div style="font-size:9px;font-weight:600;color:#a3a3a3;text-transform:uppercase;letter-spacing:.08em;margin-bottom:7px;flex-shrink:0">Available slots</div>${sl}</div></div>`;
+}
+
+function renderCar(){
+  const total=PROFILES.length;
+  const idxs=[(carCur-1+total)%total,carCur,(carCur+1)%total];
+  document.getElementById('carrPhones').innerHTML=idxs.map((idx,pos)=>{
+    const p=PROFILES[idx],cls=pos===1?'carr-center':'carr-side';
+    return `<div class="carr-phone-wrap ${cls}"><div class="carr-phone"><div class="carr-pb-r"></div><div class="carr-pb-l1"></div><div class="carr-pb-l2"></div><div class="carr-screen">${buildPhone(p)}</div></div><div class="carr-pname">${p.name}</div><div class="carr-prole">${p.role}</div></div>`;
+  }).join('');
+  document.getElementById('carrDots').innerHTML=PROFILES.map((_,i)=>`<div class="carr-dot${i===carCur?' active':''}"></div>`).join('');
+}
+function move(d){carCur=(carCur+d+PROFILES.length)%PROFILES.length;renderCar();}
+renderCar();
+
+// ─── IPAD DEMO ───────────────────────────────────────────────────────────────
+const MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+const MS=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+let dark=false,calYear=2026,calMonth=4,selSlotIdx=-1;
+const AVC=['#1e3a5f','#1a3d2b','#3b1f0a','#2d1a4a','#3d1f1f','#0c3547'];
+function avc(n){return AVC[(n||'').charCodeAt(0)%AVC.length];}
+function ini(n){return(n||'?').split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);}
+
+let slots=[
+  {date:26,month:4,year:2026,time:'10:00',service:'Math Tutoring',booked:false},
+  {date:26,month:4,year:2026,time:'14:00',service:'Algebra',booked:true,studentName:'Lena Muller',studentEmail:'lena@email.com',studentNote:'Help with quadratics'},
+  {date:27,month:4,year:2026,time:'09:00',service:'Physics',booked:false},
+  {date:27,month:4,year:2026,time:'11:00',service:'Calculus',booked:true,studentName:'Ahmed Benali',studentEmail:'ahmed@email.com',studentNote:'Derivatives chapter'},
+  {date:28,month:4,year:2026,time:'10:00',service:'Math Tutoring',booked:false},
+  {date:28,month:4,year:2026,time:'15:00',service:'Algebra',booked:false},
+  {date:29,month:4,year:2026,time:'14:00',service:'Physics',booked:true,studentName:'Sofia Ricci',studentEmail:'sofia@email.com',studentNote:'Optics and waves'},
+  {date:30,month:4,year:2026,time:'10:00',service:'Math Tutoring',booked:false},
+];
+
+function T(s){const el=document.getElementById('T');el.innerHTML='';s==='dash'?tDash(el):tDetail(el,+s.split(':')[1]);}
+function S(s){const el=document.getElementById('S');el.innerHTML='';if(s==='cal')sCal(el);else if(s.startsWith('slots:'))sSlots(el,+s.split(':')[1]);else if(s.startsWith('form:'))sForm(el,+s.split(':')[1]);else if(s==='ok')sOk(el);else if(s.startsWith('full:'))sFull(el);}
+
+function tDash(el){
+  const bk=slots.filter(s=>s.booked),op=slots.filter(s=>!s.booked);
+  let h=`<div class="ios-nav"><span class="ios-nav-title">Dashboard</span><span class="ios-nav-sub">Sara J.</span></div><div class="ios-scroll">`;
+  h+=`<div class="ios-card ios-static"><div class="ios-prof"><div class="ios-av"><img src="https://i.pravatar.cc/150?img=47" alt="Sara" onerror="this.style.display='none';this.parentElement.textContent='SJ'"></div><div><div class="ios-pname">Sara Johnson</div><div class="ios-prole">Math &amp; Physics Tutor</div><div class="ios-link">booklink.com/sara</div></div></div></div>`;
+  h+=`<div class="ios-stats"><div class="ios-st"><div class="ios-stn">${bk.length}</div><div class="ios-stl">Bookings</div></div><div class="ios-st"><div class="ios-stn">${op.length}</div><div class="ios-stl">Open</div></div><div class="ios-st"><div class="ios-stn">${slots.length}</div><div class="ios-stl">Total</div></div></div>`;
+  if(bk.length){h+=`<div class="ios-sec">Bookings</div>`;bk.forEach(s=>{const gi=slots.indexOf(s);h+=`<div class="ios-card ios-tap" onclick="T('det:${gi}')"><div class="ios-row"><div><div class="ios-t">${MS[s.month]} ${s.date} - ${s.time}</div><div class="ios-s">${s.service}</div><div class="ios-who">${s.studentName}</div></div><span class="ios-chev">›</span></div></div>`;});}
+  if(op.length){h+=`<div class="ios-sec">Open slots</div>`;op.forEach(s=>{h+=`<div class="ios-card ios-static"><div class="ios-row"><div><div class="ios-t">${MS[s.month]} ${s.date} - ${s.time}</div><div class="ios-s">${s.service}</div></div><span class="ios-bdg ios-open">Available</span></div></div>`;});}
+  h+=`</div>`;el.innerHTML=h;
+}
+
+function tDetail(el,idx){
+  const s=slots[idx];
+  let h=`<div class="ios-nav"><button class="ios-back" onclick="T('dash')">Back</button><span class="ios-nav-title">Booking</span><span></span></div><div class="ios-scroll">`;
+  h+=`<div class="ios-card ios-static" style="display:flex;align-items:center;gap:10px;"><div class="ios-det-av" style="background:${avc(s.studentName)}">${ini(s.studentName)}</div><div><div class="ios-pname">${s.studentName}</div><div class="ios-link">${s.studentEmail}</div></div></div>`;
+  h+=`<div class="ios-card ios-static"><div class="ios-sec" style="margin-bottom:6px;">Session details</div><div class="ios-det-row"><span class="ios-dlbl">Date</span><span class="ios-dval">${MONTHS[s.month]} ${s.date}</span></div><div class="ios-det-row"><span class="ios-dlbl">Time</span><span class="ios-dval">${s.time}</span></div><div class="ios-det-row"><span class="ios-dlbl">Service</span><span class="ios-dval">${s.service}</span></div><div class="ios-det-row" style="border:none"><span class="ios-dlbl">Notes</span><span class="ios-dval">${s.studentNote||'-'}</span></div></div>`;
+  h+=`<div class="ios-card ios-static ios-danger"><div class="ios-sec" style="margin-bottom:6px;color:var(--r-tx);">Cancel session</div><button class="ios-cancel-btn" onclick="cancelSlot(${idx})">Cancel this booking</button></div></div>`;
+  el.innerHTML=h;
+}
+
+function cancelSlot(idx){slots[idx].booked=false;delete slots[idx].studentName;delete slots[idx].studentEmail;delete slots[idx].studentNote;T('dash');S('cal');aiMsg('agent','Session cancelled. Slot is open again.');}
+
+function sCal(el){
+  const dim=new Date(calYear,calMonth+1,0).getDate();
+  const fd=new Date(calYear,calMonth,1).getDay();
+  const st=fd===0?6:fd-1;
+  let grid='<div class="ios-cgrid">';
+  ['M','T','W','T','F','S','S'].forEach(d=>grid+=`<div class="ios-cdn">${d}</div>`);
+  for(let i=0;i<st;i++) grid+=`<div class="ios-cd ios-empty"></div>`;
+  for(let i=1;i<=dim;i++){
+    const ds=slots.filter(s=>s.date===i&&s.month===calMonth&&s.year===calYear);
+    let cls='ios-nosl';
+    if(ds.length) cls=ds.some(s=>!s.booked)?'ios-open-day':'ios-full-day';
+    grid+=`<div class="ios-cd ${cls}" data-d="${i}">${i}</div>`;
+  }
+  grid+='</div>';
+  let h=`<div class="ios-nav"><span class="ios-nav-title">Book a session</span></div><div class="ios-scroll">`;
+  h+=`<div class="ios-card ios-static"><div class="ios-prof"><div class="ios-av"><img src="https://i.pravatar.cc/150?img=47" alt="Sara" onerror="this.style.display='none';this.parentElement.textContent='SJ'"></div><div><div class="ios-pname">Sara Johnson</div><div class="ios-prole">Math &amp; Physics Tutor</div><div class="ios-pbio">1-on-1 sessions online. Tap a green day to see available slots.</div></div></div></div>`;
+  h+=`<div class="ios-card ios-static"><div class="ios-cal-hdr"><button class="ios-cnav" id="pm">&#8249;</button><span class="ios-cal-title">${MONTHS[calMonth]} ${calYear}</span><button class="ios-cnav" id="nm">&#8250;</button></div>${grid}<div class="ios-leg"><div class="ios-leg-i"><div class="ios-leg-dot ios-ld-green"></div>Open</div><div class="ios-leg-i"><div class="ios-leg-dot ios-ld-red"></div>Booked</div></div></div></div>`;
+  el.innerHTML=h;
+  el.querySelectorAll('.ios-cd[data-d]').forEach(cd=>{cd.addEventListener('click',()=>{const d=+cd.dataset.d;const ds=slots.filter(s=>s.date===d&&s.month===calMonth&&s.year===calYear);if(!ds.length)return;ds.some(s=>!s.booked)?S('slots:'+d):S('full:'+d);});});
+  el.querySelector('#pm').onclick=()=>{calMonth--;if(calMonth<0){calMonth=11;calYear--;}S('cal');};
+  el.querySelector('#nm').onclick=()=>{calMonth++;if(calMonth>11){calMonth=0;calYear++;}S('cal');};
+}
+
+function sSlots(el,day){
+  const ds=slots.filter(s=>s.date===day&&s.month===calMonth&&s.year===calYear);
+  let h=`<div class="ios-nav"><button class="ios-back" onclick="S('cal')">Back</button><span class="ios-nav-title">${MONTHS[calMonth]} ${day}</span><span></span></div><div class="ios-scroll"><div class="ios-sec">Tap a slot to book</div>`;
+  ds.forEach(s=>{const gi=slots.indexOf(s);if(!s.booked){h+=`<div class="ios-card ios-tap" onclick="S('form:${gi}')"><div class="ios-row"><div><div class="ios-t">${s.time}</div><div class="ios-s">${s.service}</div></div><span class="ios-bdg ios-open">Book</span></div></div>`;}else{h+=`<div class="ios-card ios-tap" onclick="S('full:x')"><div class="ios-row"><div><div class="ios-t ios-dim">${s.time}</div><div class="ios-s">${s.service}</div><div class="ios-err">Already booked</div></div><span class="ios-bdg ios-full">Full</span></div></div>`;}});
+  h+=`</div>`;el.innerHTML=h;
+}
+
+function sForm(el,idx){
+  selSlotIdx=idx;const s=slots[idx];
+  let h=`<div class="ios-nav"><button class="ios-back" onclick="S('slots:${s.date}')">Back</button><span class="ios-nav-title">Your details</span><span></span></div><div class="ios-scroll">`;
+  h+=`<div class="ios-pill">${MONTHS[s.month]} ${s.date} at ${s.time} - ${s.service}</div>`;
+  ['First name','Last name','Email','Notes (optional)'].forEach((lbl,i)=>{
+    const ids=['f1','f2','f3','f4'];
+    const phs=['Ahmed','Benali','ahmed@email.com','Topics to cover...'];
+    const types=['text','text','email','text'];
+    h+=`<div class="ios-fw"><div class="ios-flbl">${lbl}</div><input class="ios-finput" id="${ids[i]}" placeholder="${phs[i]}" type="${types[i]}"></div>`;
+  });
+  h+=`<button class="ios-cbtn" onclick="doBook()">Confirm booking</button></div>`;
+  el.innerHTML=h;
+}
+
+function doBook(){
+  const fn=document.getElementById('f1').value.trim()||'Student';
+  const ln=document.getElementById('f2').value.trim()||'';
+  const em=document.getElementById('f3').value.trim()||'student@email.com';
+  const nt=document.getElementById('f4').value.trim()||'-';
+  slots[selSlotIdx].booked=true;
+  slots[selSlotIdx].studentName=fn+(ln?' '+ln:'');
+  slots[selSlotIdx].studentEmail=em;
+  slots[selSlotIdx].studentNote=nt;
+  T('dash');S('ok');
+  aiMsg('agent',`New booking. ${slots[selSlotIdx].studentName} booked ${MS[slots[selSlotIdx].month]} ${slots[selSlotIdx].date} at ${slots[selSlotIdx].time}.`);
+}
+
+function sOk(el){
+  const s=slots[selSlotIdx]||{};
+  el.innerHTML=`<div class="ios-nav"><span class="ios-nav-title">Confirmed</span></div><div class="ios-center"><div class="ios-ok-icon">&#10003;</div><div class="ios-ok-title">You are booked!</div><div class="ios-ok-sub">${MONTHS[s.month]||''} ${s.date||''} at ${s.time||''}<br>${s.service||''}<br><br>Confirmation sent to<br><strong>${s.studentEmail||''}</strong></div><button class="ios-ghost-btn" onclick="S('cal')">Book another session</button></div>`;
+}
+
+function sFull(el){
+  el.innerHTML=`<div class="ios-nav"><button class="ios-back" onclick="S('cal')">Back</button><span class="ios-nav-title">Unavailable</span><span></span></div><div class="ios-center"><div class="ios-full-circle"></div><div class="ios-ok-title" style="color:var(--r-tx)">Fully booked</div><div class="ios-ok-sub">This slot is no longer available.<br>Please choose another day.</div><button class="ios-ghost-btn" onclick="S('cal')">Back to calendar</button></div>`;
+}
+
+function toggleMode(on){
+  dark=on;
+  document.querySelectorAll('.scr').forEach(s=>{s.className='scr '+(dark?'dark':'light');});
+}
+
+// ─── AI ──────────────────────────────────────────────────────────────────────
+function aiMsg(r,t){
+  const c=document.getElementById('aiMessages');
+  const d=document.createElement('div');d.className=`ai-msg ${r}`;d.textContent=t;
+  c.appendChild(d);c.scrollTop=c.scrollHeight;
+}
+function showTyping(){
+  const c=document.getElementById('aiMessages');
+  const d=document.createElement('div');d.className='ai-msg agent';d.id='aiTyping';
+  d.innerHTML='<span class="ai-dots"><span></span><span></span><span></span></span>';
+  c.appendChild(d);c.scrollTop=c.scrollHeight;
+}
+async function sendAI(){
+  const inp=document.getElementById('aiIn'),btn=document.getElementById('aiSendBtn');
+  const txt=inp.value.trim();if(!txt)return;
+  aiMsg('user',txt);inp.value='';btn.disabled=true;showTyping();
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:300,
+        system:`BookLink AI assistant. Month: May 2026 (month=4). Slots: ${JSON.stringify(slots)}. Reply ONLY valid JSON:
+Add: {"action":"add","date":28,"month":4,"year":2026,"time":"10:00","service":"Math"}
+Remove: {"action":"remove","date":28,"month":4,"year":2026,"time":"10:00"}
+Other: {"action":"none","message":"..."}`,
+        messages:[{role:'user',content:txt}]})});
+    const data=await res.json();
+    const t=document.getElementById('aiTyping');if(t)t.remove();
+    const p=JSON.parse(data.content[0].text.replace(/```json|```/g,'').trim());
+    if(p.action==='add'){
+      slots.push({date:p.date,month:p.month,year:p.year,time:p.time,service:p.service,booked:false});
+      T('dash');S('cal');aiMsg('agent',`Added ${MONTHS[p.month]} ${p.date} at ${p.time} for ${p.service}.`);
+    }else if(p.action==='remove'){
+      const b=slots.length;slots=slots.filter(s=>!(s.date===p.date&&s.month===p.month&&s.time===p.time));
+      T('dash');S('cal');aiMsg('agent',slots.length<b?`Removed that slot.`:`Could not find that slot.`);
+    }else aiMsg('agent',p.message||'Done.');
+  }catch(e){const t=document.getElementById('aiTyping');if(t)t.remove();aiMsg('agent','Something went wrong.');}
+  btn.disabled=false;
+}
+
+T('dash');S('cal');
+</script>
+</html>

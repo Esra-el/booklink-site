@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book with Sara — BookLink</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    .profile-page {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    /* PROVIDER HEADER */
+    .provider-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      margin-bottom: 24px;
+    }
+
+    .provider-header img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .provider-header h1 { font-size: 1.6rem; }
+    .provider-header .role { color: var(--gray); margin: 4px 0 10px; }
+    .provider-header .bio { font-size: 0.9rem; color: #374151; }
+
+    /* SLOTS SECTION */
+    .slots-section {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+    }
+
+    .slots-section h2 {
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+    }
+
+    .slots-section p {
+      color: var(--gray);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+
+    /* SLOT LIST */
+    .slot-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* each bookable slot row */
+    .slot-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      transition: all 0.2s;
+    }
+
+    .slot-row:hover {
+      border-color: var(--accent);
+    }
+
+    .slot-row .slot-info strong {
+      display: block;
+      font-weight: 600;
+    }
+
+    .slot-row .slot-info span {
+      font-size: 0.85rem;
+      color: var(--gray);
+    }
+
+    /* the green Book button on each slot */
+    .book-slot-btn {
+      background: var(--black);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 8px 20px;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+    }
+
+    .book-slot-btn:hover { background: var(--accent); }
+
+    /* LEGEND */
+    .legend {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+      font-size: 0.82rem;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Small top bar with BookLink branding -->
+  <header class="header">
+    <div class="logo-area">
+      <span class="logo-dot"></span>
+      <a class="site-name" href="index.html" style="text-decoration:none;color:inherit;">BookLink</a>
+    </div>
+    <a class="cta-btn" href="signup.html">Create your own page →</a>
+  </header>
+
+  <div class="profile-page">
+
+    <!-- PROVIDER PROFILE -->
+    <div class="provider-header">
+      <img src="https://i.pravatar.cc/150?img=47" alt="Sara Johnson">
+      <div>
+        <h1>Sara Johnson</h1>
+        <p class="role">📚 Math & Physics Tutor</p>
+        <p class="bio">I help students understand maths and physics from basics to university level. Sessions are 1 hour online via Zoom.</p>
+      </div>
+    </div>
+
+    <!-- AVAILABLE SLOTS -->
+    <div class="slots-section">
+      <h2>Available Slots</h2>
+      <p>Click "Book" on any slot to reserve your session.</p>
+
+      <!-- Legend explaining colors -->
+      <div class="legend">
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#22c55e;"></div>
+          Available
+        </div>
+        <div class="legend-item">
+          <div class="legend-dot" style="background:#ef4444;"></div>
+          Booked
+        </div>
+      </div>
+
+      <div class="slot-list">
+
+        <!-- Each slot row: date, time, service, book button -->
+        <!-- Later these will come dynamically from the backend -->
+        <div class="slot-row">
+          <div class="slot-info">
+            <strong>Monday, 28 April 2026</strong>
+            <span>10:00 – 11:00 · Math Tutoring</span>
+          </div>
+          <!-- onclick goes to booking.html -->
+          <button class="book-slot-btn" onclick="window.location.href='booking.html'">Book</button>
+        </div>
+
+        <div class="slot-row">
+          <div class="slot-info">
+            <strong>Tuesday, 29 April 2026</strong>
+            <span>14:00 – 15:00 · Algebra</span>
+          </div>
+          <button class="book-slot-btn" onclick="window.location.href='booking.html'">Book</button>
+        </div>
+
+        <div class="slot-row">
+          <div class="slot-info">
+            <strong>Thursday, 1 May 2026</strong>
+            <span>09:00 – 10:00 · Physics</span>
+          </div>
+          <button class="book-slot-btn" onclick="window.location.href='booking.html'">Book</button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

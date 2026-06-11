@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BookLink</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="booking-page">
+
+  <!-- LEFT SIDE -->
+  <div class="left-side">
+
+    <div class="profile-box">
+      <img src="https://i.pravatar.cc/150" alt="profile">
+      <h2>Name</h2>
+      <p>Service</p>
+    </div>
+
+    <!-- CALENDAR UNDER PROFILE -->
+    <div class="calendar-box">
+
+      <div class="calendar-header">
+        <button id="prev">←</button>
+        <h3 id="month-title">April 2026</h3>
+        <button id="next">→</button>
+      </div>
+
+      <div class="calendar-grid" id="calendar-grid">
+        <span>Mon</span>
+        <span>Tue</span>
+        <span>Wed</span>
+        <span>Thu</span>
+        <span>Fri</span>
+        <span>Sat</span>
+        <span>Sun</span>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- RIGHT SIDE -->
+  <div class="right-side">
+  </div>
+
+</div>
+</div>
+
+</div>
+<script>
+  let year = 2026;
+  let month = 3;
+  
+  let calendarGrid = document.getElementById("calendar-grid");
+  calendarGrid.innerHTML = "";
+
+  // find what day month starts on
+  let firstDay = new Date(year, month, 1).getDay();
+  // convert Sunday=0 to Monday=0
+  let startDay = (firstDay === 0) ? 6 : firstDay - 1;
+
+  // add empty divs before day 1
+  for(let i = 0; i < startDay; i++) {
+    let empty = document.createElement("div");
+    empty.classList.add("day", "empty");
+    calendarGrid.appendChild(empty);
+  }
+
+  // add the actual days
+  let daysInMonth = new Date(year, month + 1, 0).getDate();
+  for(let i = 1; i <= daysInMonth; i++) {
+    let day = document.createElement("div");
+    day.innerText = i;
+    day.classList.add("day");
+    calendarGrid.appendChild(day);  // ← ADD THIS!
+  }
+</script>
+</body>
+</html>
